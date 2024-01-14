@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1>Fines</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Reason</th>
+        <th scope="col">Place</th>
+        <th scope="col">Time of issue</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Payment status</th>
+        <th scope="col">Penalty amount</th>
+        <th scope="col">Discount</th>
+        <th scope="col">Created At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @fines.each do |fine| %>
+        <tr>
+          <td><%= fine.reason %></td>
+          <td><%= fine.place %></td>
+          <td><%= fine.time_of_issue %></td>
+          <td><%= fine.amount %></td>
+          <td><%= fine.payment_status %></td>
+          <td>
+            <% if (Date.current - fine.created_at.to_date).to_i <= 5 %>
+              0
+            <% else %>
+              <%= (fine.amount + fine.penalty_amount * 0.02 * ((Date.current - fine.created_at.to_date).to_i - 5)).round(2) %>
+            <% end %>
+          </td>
+          <td><%= (fine.created_at.to_date + 5.days).future? ? (fine.amount * 0.5) : 0 %></td>
+          <td><%= fine.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @fine.reason %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @fine.place %>
+</p>
+
+<p>
+  <strong>Time of issue:</strong>
+  <%= @fine.time_of_issue %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @fine.amount %>
+</p>
+
+<p>
+  <strong>Payment status:</strong>
+  <%= @fine.payment_status %>
+</p>
+
+<p>
+  <strong>Penalty amount:</strong>
+  <%= @fine.penalty_amount %>
+</p>
+
+<%= link_to 'Edit', edit_fine_path(@fine) %> |
+<%= link_to 'Back', fines_path %>

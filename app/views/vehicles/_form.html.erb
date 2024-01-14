@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <%= form_with(model: vehicle, class: 'needs-validation', novalidate: true) do |form| %>
+    <% if vehicle.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading"> <%= pluralize(vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h4>
+
+        <ul>
+          <% vehicle.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3 mt-3">
+      <%= form.label :plate_number, class: 'form-label' %>
+      <%= form.text_field :plate_number, class: 'form-control', required: true %>
+
+    </div>
+
+    <div class="mb-3 mt-3">
+      <%= form.label :vehicle_type, class: 'form-label' %>
+      <%= form.text_field :vehicle_type, class: 'form-control', required: true %>
+
+    </div>
+
+    <div class="mb-3 mt-3">
+      <%= form.label :brand, class: 'form-label' %>
+      <%= form.text_field :brand, class: 'form-control', required: true %>
+
+    </div>
+
+    <div class="mb-3 mt-3">
+      <%= form.label :year, class: 'form-label' %>
+      <%= form.text_field :year, class: 'form-control', required: true %>
+
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <div class="mb-3 mt-3">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
